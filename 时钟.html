@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        li{
+            list-style: none;
+        }
+        #circle{
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            border: 5px solid;
+            margin: 200px auto;
+            position: relative;
+        }
+        #dial li{
+            width: 3px;
+            height: 13px;
+            background: #000000;
+            position: absolute;
+            left: 250px;
+            top: 0;
+            transform-origin: 0 250px;
+        }
+        #dial li:nth-child(5n+1){
+            height: 25px;
+        }
+        #hour{
+            width: 8px;
+            height: 90px;
+            background: #000000;
+            left: 250px;
+            top: 160px;
+            position: absolute;
+            transition:all 1s linear;
+        }
+        #minute{
+            width: 6px;
+            height: 160px;
+            background: #000000;
+            left:250px;
+            top:90px;
+            position: absolute;
+            transition:all 2s linear;
+        }
+        #second{
+            width: 4px;
+            height: 200px;
+            background: #000000;
+            left:250px;
+            top:50px;
+            position: absolute;
+            animation: 1s linear infinite;78
+        }
+        @keyframes  {
+            from{}
+            to{
+                  (360deg)
+            }
+        }
+        #circle div{
+            transform-origin: bottom;
+        }
+        #name12{
+            font-size: 25px;
+            left:236px;
+            top:20px;
+            position: absolute;
+        }
+        #name3{
+            font-size: 25px;
+            left:456px;
+            top:234px;
+            position: absolute;
+
+        }
+        #name6{
+            font-size: 25px;
+            left:242px;
+            top:446px;
+            position: absolute;
+
+        }
+        #name9{
+            font-size: 25px;
+            left:34px;
+            top:230px;
+            position: absolute;
+        }
+        /*#dial li:nth-child(1){*/
+
+        /*}*/
+        /*#dial li:nth-child(2){*/
+            /*transform: rotate(6deg)*/
+        /*}*/
+        /*#dial li:nth-child(3){*/
+            /*transform: rotate(12deg)*/
+        /*}*/
+        /*#dial li:nth-child(4){*/
+            /*transform: rotate(18deg)*/
+        /*}*/
+        /*#dial li:nth-child(5){*/
+            /*transform: rotate(24deg)*/
+        /*}*/
+        /*#dial li:nth-child(6){*/
+            /*transform: rotate(30deg)*/
+        /*}*/
+        #dot{
+            width: 1px;
+            height: 1px;
+            top: 245px;
+            left: 247px;
+            border-radius: 50%;
+            border: 5px solid;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="circle">
+        <ul id="dial">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div id="hour"></div>
+        <div id="minute"></div>
+        <div id="second"></div>
+        <div id="dot"></div>
+        <div id="name12">12</div>
+        <div id="name3">3</div>
+        <div id="name6">6</div>
+        <div id="name9">9</div>
+    </div>
+
+    <script>
+        var oDial = document.getElementById("dial");
+        var oHour = document.getElementById("hour");
+        var oMinute = document.getElementById("minute");
+        var oSecond = document.getElementById("second");
+        var lis = "";
+        for(var i=0;i<60;i++){
+//            var oLi = document.createElement("li");
+//            oDial.appendChild(oLi)
+            lis += "<li style = 'transform:rotate(" +i*6+ "deg);'></li>";
+
+        }
+        oDial.innerHTML = lis;
+        run();
+        setInterval(run,1000);
+        function run() {
+            var now = new Date();
+            var second = now.getSeconds();
+            var minute = now.getMinutes()+ second / 60;
+            var hour = now.getHours()+ minute / 60;
+            oHour.style.transform = "rotate(" + hour * 30 + "deg)";
+            oMinute.style.transform = "rotate(" + minute * 6 + "deg)";
+            oSecond.style.transform = "rotate(" + second * 6 + "deg)";
+        }
+    </script>
+</body>
+</html>
